@@ -220,3 +220,35 @@ df_url = pd.DataFrame(dict_dist)
 - Foram criadas as colunas:
     - URL: empilhando as colunas da matriz
     - dist_media: media das distâncias de uma coluna, sendo que uma coluna contem a distância de um airbnb a todos os cafés da lista
+    - dist_min: a menor distância presente na coluna
+    - estabelecimento: o estabelecimento correspondente a menor distância
+      
+Complementando o data frame com informações da base original:
+```
+# Primeiro o preço
+df_url["preco diaria"] = None
+
+for index, row in df_url.iterrows():
+    url = row["URL"]
+    preco_diaria = airbnb_1.loc[airbnb_1["url"] == url, "Preço formatado"].values
+    if len(preco_diaria) > 0:
+        df_url.at[index, "preco diaria"] = preco_diaria[0]
+
+# Também irei trazer o roomType para plotar algumas análises
+
+df_url["tipo_quarto"] = None
+
+for index, row in df_url.iterrows():
+    url = row["URL"]
+    tipo_quarto = airbnb_1.loc[airbnb_1["url"] == url, "roomType"].values
+    if len(tipo_quarto) > 0:
+        df_url.at[index, "tipo_quarto"] = tipo_quarto[0]
+```
+Por fim, salvando a base
+
+```
+df_url.to_excel("base_final.xlsx")
+```
+
+
+
