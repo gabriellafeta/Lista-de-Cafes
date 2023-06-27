@@ -80,5 +80,12 @@ airbnb_sp["Preço formatado"] = (
     .astype(float)
 )
 ```
+Calculando agrupamentos por bairro
+```
+medias = airbnb_sp.groupby("Bairro")[["Preço formatado", "stars"]].mean().round(2)
+print(medias)
+<img src="Cafe_airbnb_consolidado/Imagens/novo graf.png"
+   width="600"
+     height="400">
 
-
+```
