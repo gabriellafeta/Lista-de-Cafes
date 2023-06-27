@@ -71,4 +71,14 @@ plt.show()
    width="400"
      height="341">
 
-Percebi que para extratir informações da coluna de preços seria necessário aplicar uma formatação ara conver
+Percebi que para extratir informações da coluna de preços seria necessário aplicar uma formatação para convertê-lo em float.
+```
+airbnb_sp["Preço formatado"] = (
+    airbnb_sp["pricing/rateBreakdown/6/priceFormatted"]
+    .str.lstrip('R$')
+    .str.replace(",", ".")
+    .astype(float)
+)
+```
+
+
