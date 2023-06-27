@@ -67,9 +67,9 @@ plt.ylabel('Airbnbs')
 plt.show()
 ```
 
-<img src="Cafe_airbnb_consolidado/Imagens/dist-bairros.png"
-   width="400"
-     height="341">
+<img src="Cafe_airbnb_consolidado/Imagens/novo graf.png"
+   width="600"
+     height="400">
 
 Percebi que para extratir informações da coluna de preços seria necessário aplicar uma formatação para convertê-lo em float.
 ```
