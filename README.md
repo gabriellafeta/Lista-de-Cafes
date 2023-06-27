@@ -250,5 +250,63 @@ Por fim, salvando a base
 df_url.to_excel("base_final.xlsx")
 ```
 
+## Conclusões
+Com um histograma é possível visualziar o estabelecimento que aparece mais vezes como distância mínima de cada airbnb
+```
+estab_freq = base_final['estabelecimento'].value_counts()
+estab_freq.plot(kind="bar", rot=45)
+plt.xlabel('Estabelecimentos')
+plt.title('Frequência dos estabelecimentos em relação a menor distância')
+plt.show()
+```
+<img src="Cafe_airbnb_consolidado/Imagens/freq_novo.png"
+   width="800"
+     height="500">
+     
+A base possui a seguinte distribuição de tipos de quartos
+```
+tipo_quart_graf = base_final['tipo_quarto'].value_counts()
+tipo_quart_graf.plot(kind="bar", rot=45)
+plt.xlabel('Tipo de quarto')
+plt.show()
+```
+<img src="Cafe_airbnb_consolidado/Imagens/tipo_quarto_novo.png"
+   width="800"
+     height="500">
+
+O tipo de quarto de interesse é o modelo "Entire rental unit" ou Apartamento inteiro, portanto afunilaremos nele.
+Plotando os histogramas por preço e distancia média:
+
+```
+base_final[base_final["tipo_quarto"]=="Entire rental unit"]["preco diaria"].hist()
+plt.xlabel('Preço diária')
+plt.show()
+```
+<img src="Cafe_airbnb_consolidado/Imagens/preço_diaria_rental.png"
+   width="400"
+     height="300">
+
+Existe uma feliz correlação entre preço médio e distância mínima
+
+```
+base_final[base_final["tipo_quarto"]=="Entire rental unit"]["dist_min"].hist(alpha=0.7)
+plt.xlabel('Distância média [m]')
+plt.show()
+```
+<img src="Cafe_airbnb_consolidado/Imagens/distancia_media.png"
+   width="400"
+     height="300">
+
+Por fim, o entregável final é a "base_final_ordenada.xlsx" contendo a relação de todos os airbnbs com as distâncias e os preços
+
+```
+base_final_only_ert = base_final["tipo_quarto"] == "Entire rental unit"
+base_final_ordenada = base_final[base_final_only_ert].sort_values(['preco diaria', 'dist_min', 'dist_media'], ascending=[True, True])
+
+
+print(base_final_ordenada.head())
+
+base_final_ordenada.to_excel("base_final_ordenada.xlsx")
+```
 
 
