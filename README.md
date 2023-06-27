@@ -251,7 +251,7 @@ df_url.to_excel("base_final.xlsx")
 ```
 
 ## Conclusões
-Com um histograma é possível visualziar o estabelecimento que aparece mais vezes como distância mínima de cada airbnb
+Com um histograma é possível visualizar o estabelecimento que aparece mais vezes como distância mínima de cada airbnb
 ```
 estab_freq = base_final['estabelecimento'].value_counts()
 estab_freq.plot(kind="bar", rot=45)
